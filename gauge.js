@@ -18,8 +18,6 @@ function gaugeDraw(id,data) {
   context.fillText("-50",40,115);
   context.fillText("50",200,115);
 
-
-
   if ( -50 < data && data <= 5) {color1 = "#007BFF"; color2 = "#007BFF";}
   if ( 5 <= data && data <= 20) {color1 = "#28A745"; color2 = "#28A745";}
   if ( 20 <= data && data <= 30) {color1 = "#FFC107"; color2 = "#FFC107";}
@@ -27,13 +25,11 @@ function gaugeDraw(id,data) {
 
   var dataScale = ((50 + data) * 0.008)+1.1;
 
-  //console.log(datoTemp);
-
-  //Medida
+  //Measure
   setRadialGradient(color1, color2);
   drawDonut(Math.PI * 1.1, Math.PI * dataScale);
 
-  // Fondo
+  //Grey Background
   setRadialGradient("#EEE", "#EEE");
   drawDonut(Math.PI * dataScale, Math.PI * 1.9);
 

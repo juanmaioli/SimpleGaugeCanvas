@@ -33,9 +33,9 @@
         gaugeDraw("gauge7",Math.floor((Math.random() * 50) - 10));
         gaugeDraw("gauge8",Math.floor((Math.random() * 50) - 10));
 
-          var myVar2 = setInterval(recarga, 3000);
+          var myReload = setInterval(dataReload, 1000);
 
-          function recarga (){
+          function dataReload (){
             gaugeDraw("gauge1",Math.floor((Math.random() * 50) - 10));
             gaugeDraw("gauge2",Math.floor((Math.random() * 50) - 10));
             gaugeDraw("gauge3",Math.floor((Math.random() * 50) - 10));
