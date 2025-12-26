@@ -35,18 +35,15 @@ function gaugeDraw(id,data) {
 
   function drawDonut(sRadian, eRadian){
       context.beginPath();
-      context.arc(X, Y, outterRadius, sRadian, eRadian, false); // Outer: CCW
-      context.arc(X, Y, innerRadius, eRadian, sRadian, true); // Inner: CW
-      context.closePath();
-      context.shadowColor = "#777";
-      context.shadowBlur = 1;
-      context.shadowOffsetX = 0;
-      context.shadowOffsetY = 0;
-      context.fill();
+      context.strokeStyle = context.fillStyle;
+      context.lineWidth = outterRadius - innerRadius;
+      context.lineCap = "round";
+      context.arc(X, Y, (outterRadius + innerRadius) / 2, sRadian, eRadian, false);
+      context.stroke();
   }
 
   function setRadialGradient(sgc, bgc){
-      var grd = context.createRadialGradient(X, Y, innerRadius + 5, X, Y, outterRadius);
+      var grd = context.createRadialGradient(X, Y, innerRadius, X, Y, outterRadius);
       grd.addColorStop(0,sgc);
       grd.addColorStop(1,bgc);
       context.fillStyle = grd;
