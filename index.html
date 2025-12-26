@@ -1,53 +1,50 @@
 <!DOCTYPE html>
-<html>
-<title>Simple Gauge Canvas</title>
-<!-- Just to design the web, remove if necessary -->
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-<!-- gauge Script -->
-  <script type="text/javascript" src="./src/gauge.js"></script>
+  <html>
+    <head>
+      <title>Simple Gauge Canvas</title>
+      <!-- Just to design the web, remove if necessary -->
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+      <link rel="stylesheet" href="./css/bootstrap.min.css">
+    </head>
     <body>
+      <div class="row">
+        <div class="col-3 text-center"><canvas id="gauge1" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+        <div class="col-3 text-center"><canvas id="gauge2" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+        <div class="col-3 text-center"><canvas id="gauge3" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+        <div class="col-3 text-center"><canvas id="gauge4" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+      </div>
+      <div class="row">
+        <div class="col-3 text-center"><canvas id="gauge5" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+        <div class="col-3 text-center"><canvas id="gauge6" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+        <div class="col-3 text-center"><canvas id="gauge7" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+        <div class="col-3 text-center"><canvas id="gauge8" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
+      </div>
+      <script type="text/javascript">
+          gaugeDraw("gauge1",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge2",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge3",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge4",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge5",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge6",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge7",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge8",Math.floor((Math.random() * 50) - 10));
 
-    <div class="row">
-      <div class="col-md-3 text-center"><canvas id="gauge1" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      <div class="col-md-3 text-center"><canvas id="gauge2" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      <div class="col-md-3 text-center"><canvas id="gauge3" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      <div class="col-md-3 text-center"><canvas id="gauge4" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 text-center"><canvas id="gauge5" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      <div class="col-md-3 text-center"><canvas id="gauge6" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      <div class="col-md-3 text-center"><canvas id="gauge7" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      <div class="col-md-3 text-center"><canvas id="gauge8" width="240" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-    </div>
+        let myReload = setInterval(dataReload, 1000);
 
-
-        <script type="text/javascript">
-            gaugeDraw("gauge1",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge2",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge3",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge4",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge5",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge6",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge7",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge8",Math.floor((Math.random() * 50) - 10));
-
-          var myReload = setInterval(dataReload, 1000);
-
-          function dataReload (){
-            gaugeDraw("gauge1",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge2",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge3",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge4",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge5",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge6",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge7",Math.floor((Math.random() * 50) - 10));
-            gaugeDraw("gauge8",Math.floor((Math.random() * 50) - 10));
-
-          }
-        </script>
-
-
+        function dataReload (){
+          gaugeDraw("gauge1",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge2",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge3",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge4",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge5",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge6",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge7",Math.floor((Math.random() * 50) - 10));
+          gaugeDraw("gauge8",Math.floor((Math.random() * 50) - 10));
+        }
+      </script>
+      <!-- gauge Script -->
+      <script type="text/javascript" src="./src/gauge.js"></script>
+      <script src="./js/bootstrap.bundle.min.js"></script>
+      <script src="./js/theme.js"></script>
     </body>
-</html>
+  </html>
