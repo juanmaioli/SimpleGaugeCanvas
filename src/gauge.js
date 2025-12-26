@@ -25,13 +25,13 @@ function gaugeDraw(id,data) {
 
   var dataScale = ((50 + data) * 0.008)+1.1;
 
-  //Measure
-  setRadialGradient(color1, color2);
-  drawDonut(Math.PI * 0.85, Math.PI * dataScale);
-
   //Grey Background
   setRadialGradient("#EEE", "#EEE");
   drawDonut(Math.PI * dataScale, Math.PI * 2.15);
+
+  //Measure
+  setRadialGradient(color1, color2);
+  drawDonut(Math.PI * 0.85, Math.PI * dataScale);
 
   function drawDonut(sRadian, eRadian){
       context.beginPath();
