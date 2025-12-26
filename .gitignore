@@ -1,5 +1,6 @@
-# Object file
-*.o
+.dev/
+config.php
+.eslintrc.json
+.htaccess
+.vscode/settings.json
 
-# Ada Library Information
-*.ali

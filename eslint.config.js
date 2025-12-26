@@ -1,0 +1,22 @@
+// eslint.config.js
+import globals from "globals";
+
+export default [
+  {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.node
+      }
+    },
+    rules: {
+      "indent": ["error", 2],
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+      "semi": ["error", "never"],
+      "no-var": "error"
+    }
+  }
+];
