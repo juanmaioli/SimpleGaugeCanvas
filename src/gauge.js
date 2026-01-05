@@ -1,15 +1,17 @@
-
 function gaugeDraw(id,data) {
 
-  var color1 = "#000";
-  var color2 = "#000";
-  var X = 100;
-  var Y = 80;
-  var outterRadius = 65;
-  var innerRadius = 55;
-  var c = document.getElementById(id);
-  var context = c.getContext("2d");
-  context.clearRect(0, 0, 400, 240);
+  let color1 = "#000";
+  let color2 = "#000";
+  const X = 100;
+  const Y = 80;
+  const outterRadius = 65;
+  const innerRadius = 55;
+  const c = document.getElementById(id);
+  const context = c.getContext("2d");
+  
+  // Clear rect using actual canvas dimensions
+  context.clearRect(0, 0, c.width, c.height);
+  
   context.fillStyle = "#bbb";
   context.font = "28px sans";
   context.textAlign = "center";
@@ -23,7 +25,7 @@ function gaugeDraw(id,data) {
   if ( 27 <= data && data <= 30) {color1 = "#FFC107"; color2 = "#FFC107";}
   if ( 30 <= data && data <= 50) {color1 = "#DC3545"; color2 = "#DC3545";}
 
-  var dataScale = ((50 + data) * 0.008)+1.1;
+  const dataScale = ((50 + data) * 0.008)+1.1;
 
   //Grey Background
   setRadialGradient("#EEE", "#EEE");

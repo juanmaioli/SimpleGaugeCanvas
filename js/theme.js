@@ -7,15 +7,18 @@ const themeIcon = {
 
 if (storedTheme != null) {
   document.documentElement.setAttribute('data-bs-theme', storedTheme)
-  document.querySelector('#btn-theme').innerHTML = themeIcon[storedTheme]
+  const btn = document.querySelector('#btn-theme');
+  if(btn) btn.innerHTML = themeIcon[storedTheme]
 }else{
   document.documentElement.setAttribute('data-bs-theme', 'auto')
   localStorage.setItem('theme', 'auto')
-  document.querySelector('#btn-theme').innerHTML = themeIcon[auto]
+  const btn = document.querySelector('#btn-theme');
+  if(btn) btn.innerHTML = themeIcon['auto']
 }
 
 function changeTheme(theme){
   document.documentElement.setAttribute('data-bs-theme', theme)
   localStorage.setItem('theme', theme)
-  document.querySelector('#btn-theme').innerHTML = themeIcon[theme]
+  const btn = document.querySelector('#btn-theme');
+  if(btn) btn.innerHTML = themeIcon[theme]
 }
