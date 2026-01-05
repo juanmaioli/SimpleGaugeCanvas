@@ -1,6 +1,6 @@
 # SimpleGaugeCanvas
 
-SimpleGaugeCanvas is a lightweight, dependency-free JavaScript library for rendering radial gauges on HTML canvases. It's a simple and effective solution for visualizing data in a gauge format.
+SimpleGaugeCanvas is a lightweight, dependency-free, and **responsive** JavaScript library for rendering radial gauges on HTML canvases. It allows for full customization of ranges, units, colors, and scales automatically to fit any canvas size.
 
 ![Gauge Demo](https://i.imgur.com/8bSgH8C.png)
 
@@ -12,20 +12,20 @@ All you need is a modern web browser that supports HTML5 Canvas.
 
 ### Installation
 
-1.  Clone this repository or download the `gauge.js` file.
-2.  Include the `gauge.js` script in your HTML file:
+1.  Clone this repository or download the `src/gauge.js` file.
+2.  Include the script in your HTML file:
 
     ```html
-    <script type="text/javascript" src="gauge.js"></script>
+    <script type="text/javascript" src="src/gauge.js"></script>
     ```
 
-3.  Add a canvas element to your HTML where you want the gauge to appear:
+3.  Add a canvas element to your HTML:
 
     ```html
-    <canvas id="myGauge" width="240" height="140"></canvas>
+    <canvas id="myGauge" width="300" height="200"></canvas>
     ```
 
-4.  In your JavaScript, call the `gaugeDraw` function with the ID of your canvas and the data you want to display:
+4.  Call the `gaugeDraw` function:
 
     ```javascript
     gaugeDraw("myGauge", 25);
@@ -33,40 +33,68 @@ All you need is a modern web browser that supports HTML5 Canvas.
 
 ## Usage
 
-The `gaugeDraw` function takes two arguments:
+### Syntax
 
-*   `id` (String): The ID of the canvas element.
-*   `data` (Number): The numerical value to display on the gauge. The range of the gauge is from -50 to 50.
+```javascript
+gaugeDraw(elementId, value, options);
+```
 
-The color of the gauge will change based on the value:
+*   `elementId` (String): The ID of the canvas element.
+*   `value` (Number): The numerical value to display.
+*   `options` (Object, optional): Configuration object.
 
-*   **Blue:** -50 to 8
-*   **Green:** 8 to 27
-*   **Yellow:** 27 to 30
-*   **Red:** 30 to 50
+### Configuration Options
 
-## Example
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `min` | Number | `-50` | Minimum value of the gauge. |
+| `max` | Number | `50` | Maximum value of the gauge. |
+| `unit` | String | `°C` | Unit suffix to display next to the value. |
+| `colors` | Array | `[...]` | Array of color objects defining ranges. |
 
-Here's a simple example of how to use SimpleGaugeCanvas:
+### Color Configuration
+The `colors` array defines ranges. The gauge picks the first color where `value <= max`.
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple Gauge Canvas - Example</title>
-</head>
-<body>
+```javascript
+[
+  { max: 20, color: "#007BFF" },  // Blue for values <= 20
+  { max: 80, color: "#28A745" },  // Green for values <= 80
+  { max: 100, color: "#DC3545" }  // Red for values <= 100 (and above)
+]
+```
 
-    <canvas id="gauge1" width="240" height="140"></canvas>
+## Examples
 
-    <script type="text/javascript" src="gauge.js"></script>
-    <script type="text/javascript">
-        // Draw the gauge with a value of 15
-        gaugeDraw("gauge1", 15);
-    </script>
+### 1. Default (Thermometer)
+Behaves like the original version: range -50 to 50, standard temperature colors.
+```javascript
+gaugeDraw("gauge1", 15);
+```
 
-</body>
-</html>
+### 2. Percentage (0% to 100%)
+```javascript
+gaugeDraw("gauge2", 75, {
+  min: 0,
+  max: 100,
+  unit: "%",
+  colors: [
+    { max: 50, color: "#28A745" }, // Green
+    { max: 85, color: "#FFC107" }, // Yellow
+    { max: 100, color: "#DC3545" } // Red
+  ]
+});
+```
+
+### 3. Speedometer (0 to 220 km/h)
+```javascript
+gaugeDraw("gauge3", 120, {
+  min: 0,
+  max: 220,
+  unit: " km/h",
+  colors: [
+    { max: Infinity, color: "#6610f2" } // Solid Purple
+  ]
+});
 ```
 
 ## License

@@ -1,41 +1,143 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Simple Gauge Canvas</title>
-      <!-- Just to design the web, remove if necessary -->
-      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-      <link rel="stylesheet" href="./css/bootstrap.min.css">
-      <!-- gauge Script -->
-      <script type="text/javascript" src="./src/gauge.js"></script>
-      <script src="./js/bootstrap.bundle.min.js"></script>
-      <script src="./js/theme.js"></script>
-    </head>
-    <body>
-      <div class="row">
-        <div class="col-3 text-center"><canvas id="gauge1" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-        <div class="col-3 text-center"><canvas id="gauge2" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-        <div class="col-3 text-center"><canvas id="gauge3" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-        <div class="col-3 text-center"><canvas id="gauge4" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      </div>
-      <div class="row">
-        <div class="col-3 text-center"><canvas id="gauge5" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-        <div class="col-3 text-center"><canvas id="gauge6" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-        <div class="col-3 text-center"><canvas id="gauge7" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-        <div class="col-3 text-center"><canvas id="gauge8" width="200" height="140" style="border:1px solid #d3d3d3;">Not supported/No soportado.</canvas></div>
-      </div>
-      <script type="text/javascript">
-        let myReload = setInterval(dataReload, 1000);
+<html>
+  <head>
+    <title>Simple Gauge Canvas - Showcase</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    
+    <!-- gauge Script -->
+    <script type="text/javascript" src="./src/gauge.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/theme.js"></script>
+    <style>
+      .gauge-container {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        background: var(--bs-tertiary-bg);
+      }
+      h5 { margin-bottom: 15px; opacity: 0.8; }
+      canvas { background: transparent; }
+    </style>
+  </head>
+  <body>
+    <!-- Theme Toggle -->
+    <div class="container mt-3 text-end">
+      <button class="btn btn-outline-secondary btn-sm" id="btn-theme" onclick="
+        const current = localStorage.getItem('theme') || 'auto';
+        const next = current === 'dark' ? 'light' : 'dark';
+        changeTheme(next);
+      ">Toggle Theme</button>
+    </div>
 
-        function dataReload (){
-          gaugeDraw("gauge1",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge2",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge3",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge4",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge5",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge6",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge7",Math.floor((Math.random() * 50) - 10));
-          gaugeDraw("gauge8",Math.floor((Math.random() * 50) - 10));
-        }
-      </script>
-    </body>
-  </html>
+    <div class="container mt-4">
+      <h1 class="text-center mb-5">Simple Gauge Canvas Demo</h1>
+      
+      <div class="row justify-content-center">
+        
+        <!-- Demo 1: Default Thermometer -->
+        <div class="col-md-6 col-lg-3 text-center">
+          <div class="gauge-container">
+            <h5>Default (Temp)</h5>
+            <canvas id="gauge1" width="220" height="150"></canvas>
+            <p class="small text-muted mt-2">-50 to 50 &deg;C</p>
+          </div>
+        </div>
+
+        <!-- Demo 2: Percentage (Humidity/CPU) -->
+        <div class="col-md-6 col-lg-3 text-center">
+          <div class="gauge-container">
+            <h5>Percentage</h5>
+            <canvas id="gauge2" width="220" height="150"></canvas>
+            <p class="small text-muted mt-2">0 to 100 %</p>
+          </div>
+        </div>
+
+        <!-- Demo 3: Pressure (Small Range) -->
+        <div class="col-md-6 col-lg-3 text-center">
+          <div class="gauge-container">
+            <h5>Pressure (Bar)</h5>
+            <canvas id="gauge3" width="220" height="150"></canvas>
+            <p class="small text-muted mt-2">0 to 10 Bar</p>
+          </div>
+        </div>
+
+        <!-- Demo 4: Speed (Large Range & Custom Color) -->
+        <div class="col-md-6 col-lg-3 text-center">
+          <div class="gauge-container">
+            <h5>Speed</h5>
+            <canvas id="gauge4" width="220" height="150"></canvas>
+            <p class="small text-muted mt-2">0 to 220 km/h</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Responsive Test Row -->
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <div class="gauge-container">
+            <h5>Responsive Test (Large Canvas)</h5>
+            <canvas id="gaugeBig" width="600" height="300" style="width: 100%; max-width: 600px; height: auto;"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+      // Start simulation
+      setInterval(updateGauges, 1000);
+      updateGauges(); // Initial draw
+
+      function updateGauges() {
+        // 1. Default Behavior
+        const val1 = Math.floor(Math.random() * 100) - 50; // -50 to 50
+        gaugeDraw("gauge1", val1);
+
+        // 2. Percentage Configuration
+        const val2 = Math.floor(Math.random() * 100); // 0 to 100
+        gaugeDraw("gauge2", val2, {
+          min: 0, 
+          max: 100, 
+          unit: "%",
+          colors: [
+            { max: 40, color: "#28A745" }, // Green (OK)
+            { max: 75, color: "#FFC107" }, // Yellow (Warning)
+            { max: 100, color: "#DC3545" } // Red (Critical)
+          ]
+        });
+
+        // 3. Pressure Configuration
+        const val3 = (Math.random() * 10).toFixed(1); // 0.0 to 10.0
+        gaugeDraw("gauge3", parseFloat(val3), {
+          min: 0,
+          max: 10,
+          unit: " Bar",
+          colors: [
+            { max: 6, color: "#17a2b8" }, // Cyan
+            { max: 8, color: "#fd7e14" }, // Orange
+            { max: 10, color: "#6f42c1" } // Purple
+          ]
+        });
+
+        // 4. Speed Configuration
+        const val4 = Math.floor(Math.random() * 220);
+        gaugeDraw("gauge4", val4, {
+          min: 0,
+          max: 220,
+          unit: " km/h",
+          colors: [{ max: Infinity, color: "#20c997" }] // Teal for all
+        });
+
+        // 5. Big Responsive Gauge (Mirroring Speed)
+        gaugeDraw("gaugeBig", val4, {
+          min: 0,
+          max: 220,
+          unit: " km/h",
+          colors: [{ max: Infinity, color: "#0d6efd" }] // Bootstrap Primary Blue
+        });
+      }
+    </script>
+  </body>
+</html>
